@@ -19,3 +19,13 @@ function Guardarin(){
         alert("No dejar espacios vacios")
     }
 }
+
+document.getElementById("bus").addEventListener("input", function() {
+        var bu = this.value.toLowerCase(); 
+        var tabla = document.getElementById("cuerpo");
+  
+        Array.from(tabla.rows).forEach(row => {
+          const nombre = row.cells[0].innerText.toLowerCase();
+          row.style.display = nombre.includes(bu) ? "" : "none";
+        });
+   });
