@@ -10,7 +10,10 @@ function Guardarin(){
             <td>${nombres}</td>
             <td>${celular}</td>
             <td>${correo}</td>
-            <td>${etiqueta}</td>`;
+            <td>${etiqueta}</td>
+            <button class="btn btn-success btn-sm me-1" onclick="Editar(this)">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="Eliminar(this)">Eliminar</button>
+          </td>`;
         document.getElementById("txnom").value = " ";
         document.getElementById("txtel").value = " ";
         document.getElementById("txcor").value = " ";
@@ -20,12 +23,23 @@ function Guardarin(){
     }
 }
 
+//Para buscar
 document.getElementById("bus").addEventListener("input", function() {
         var bu = this.value.toLowerCase(); 
         var tabla = document.getElementById("cuerpo");
   
         Array.from(tabla.rows).forEach(row => {
-          const nombre = row.cells[0].innerText.toLowerCase();
+          var nombre = row.cells[0].innerText.toLowerCase();
           row.style.display = nombre.includes(bu) ? "" : "none";
         });
    });
+
+//Para Eliminar
+function Eliminar(button) {
+    var a = button.parentNode.parentNode;
+    a.parentNode.removeChild(a);
+
+    var d = Array.from(a.parentNode.children).indexOf(a);
+    if (d > -1) contacts.splice(d, 1);
+  }
+
