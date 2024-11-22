@@ -11,9 +11,9 @@ function Guardarin(){
             <td>${celular}</td>
             <td>${correo}</td>
             <td>${etiqueta}</td>
-            <button class="btn btn-success btn-sm me-1" onclick="Editar(this)">Editar</button>
-            <button class="btn btn-danger btn-sm" onclick="Eliminar(this)">Eliminar</button>
-          </td>`;
+            <td><button class="btn btn-success" onclick="Editarcon(this)">EDITAR</button>
+            <button class="btn btn-danger" onclick="Eliminar(this)">ELIMINAR</button>
+         </td> `;
         document.getElementById("txnom").value = " ";
         document.getElementById("txtel").value = " ";
         document.getElementById("txcor").value = " ";
@@ -30,16 +30,25 @@ document.getElementById("bus").addEventListener("input", function() {
   
         Array.from(tabla.rows).forEach(row => {
           var nombre = row.cells[0].innerText.toLowerCase();
-          row.style.display = nombre.includes(bu) ? "" : "none";
-        });
+          row.style.display = nombre.includes(bu) ? "" : "none";});
    });
 
 //Para Eliminar
 function Eliminar(button) {
-    var a = button.parentNode.parentNode;
-    a.parentNode.removeChild(a);
+    var elim = button.parentNode.parentNode;
+    elim.parentNode.removeChild(elim);
+}
 
-    var d = Array.from(a.parentNode.children).indexOf(a);
-    if (d > -1) contacts.splice(d, 1);
+//Para Editar
+function Editarcon(button) {
+    var edit = button.parentNode.parentNode;
+
+    document.getElementById("txnom").value = edit.cells[0].innerText;
+    document.getElementById("txtel").value = edit.cells[1].innerText;
+    document.getElementById("txcor").value = edit.cells[2].innerText;
+    document.getElementById("txet").value = edit.cells[3].innerText;
+
+    Eliminar(button);
   }
+
 
